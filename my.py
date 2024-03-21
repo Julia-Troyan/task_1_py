@@ -15,11 +15,11 @@ def menu():
 
 def check_len_text_input(text, n):
     while len(text) <= n:
-        print(f'Текст должен быть больше {n} символов\n')
+        print(f'Введите не менее {n} символов\n')
         text = input('Введите тескт: ')
     else:
         return text
 
 
 def goodbuy():
-    print("Приходите к нам еще =). До новых встреч!")
+    print("Досвидания")
