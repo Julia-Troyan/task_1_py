@@ -16,12 +16,12 @@ def run():
             f.id_edit_del_show('del')
         if input_from_user == '4':
             f.show('all')
-            f.id_edit_del_show()
+            f.id_edit_del_show('text')
         if input_from_user == '5':
             f.show('date')
         if input_from_user == '6':
             f.show('id')
-            f.id_edit_del_show('show')
+            f.id_edit_del_show('text')
         if input_from_user == '7':
             menu.world()
             break

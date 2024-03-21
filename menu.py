@@ -1,11 +1,11 @@
 import note
 
 
-def create_note(number):
+def create_note(num):
     title = check_len_text_input(
-        input('Введите Название заметки: '), number)
+        input('Введите название заметки: '), num)
     body = check_len_text_input(
-        input('Введите Описание заметки: '), number)
+        input('Введите содержание заметки: '), num)
     return note.Note(title=title, body=body)
 
 
