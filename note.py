@@ -1,40 +1,16 @@
-from datetime import datetime
-import uuid
+import json
+import datetime
 
+def create_note():
+    note_id = input("Enter note ID: ")
+    title = input("Enter note title: ")
+    body = input("Enter note body: ")
+    created_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-class Note:
-    def __init__(self, id = str(uuid.uuid1())[0:3],  title = "текст", body = "текст", date = str(datetime.now().strftime("%d.%m.%Y %H:%M:%S"))):
-        self.id = id
-        self.title = title
-        self.body = body
-        self.date = date
-
-    def get_id(note):
-        return note.id
-
-    def get_title(note):
-        return note.title
-
-    def get_body(note):
-        return note.body
-
-    def get_date(note):
-        return note.date
-
-    def set_id(note):
-        note.id = str(uuid.uuid1())[0:3]
-
-    def set_title(note, title):
-        note.title = title
-
-    def set_body(note, body):
-        note.body = body
-
-    def set_date(note):
-        note.date = str(datetime.now().strftime("%d.%m.%Y %H:%M:%S"))
-
-    def to_string(note):
-        return note.id + ';' + note.title + ';' + note.body + ';' + note.date
-
-    def map_note(note):
-        return '\nID: ' + note.id + '\n' + 'Название: ' + note.title + '\n' + 'Описание: ' + note.body + '\n' + 'Дата публикации: ' + note.date
+    def main():
+        while True:
+            print("1. Создать новую заметку")
+            print("2. Читать все заметки")
+            print("3. Редактирование заметки")
+            print("4. Удаление заметки")
+            print("5. Выход из приложения 'Заметки'")
