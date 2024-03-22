@@ -1,40 +1,64 @@
-from datetime import datetime
-import uuid
+import json
+import datetime
+
+def create_note():
+    note_id = input("Enter note ID: ")
+    title = input("Enter note title: ")
+    body = input("Enter note body: ")
+    created_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    note = {
+        "id": note_id,
+        "title": title,
+        "body": body,
+        "created_date": created_date
+    }
+
+    return note
+
+    def save_note(note):
+        with open('notes.json', 'a') as file:
+            json.dump(note, file)
+            file.write('\n')
+
+    def read_notes():
+        with open('notes.json') as file:
+            for line in file:
+                note = json.loads(line)
+                print("ID: ", note["id"])
+                print("Title: ", note["title"])
+                print("Body: ", note["body"])
+                print("Created on: ", note["created_date"])
+                print()
 
 
-class Note:
-    def __init__(self, id = str(uuid.uuid1())[0:3],  title = "текст", body = "текст", date = str(datetime.now().strftime("%d.%m.%Y %H:%M:%S"))):
-        self.id = id
-        self.title = title
-        self.body = body
-        self.date = date
 
-    def get_id(note):
-        return note.id
 
-    def get_title(note):
-        return note.title
+    def main():
+        while True:
+            print("1. Создать заметку")
+            print("2. Просмотреть все заметки")
+            print("3. Редактировать заметку")
+            print("4. Удалить заметку")
+            print("5. Выход из приложения 'Заметки'")
 
-    def get_body(note):
-        return note.body
+            choice = input("Введите свой выбор: ")
 
-    def get_date(note):
-        return note.date
+            if choice == "1":
+                note = create_note()
+                save_note(note)
+            elif choice == "2":
+                read_notes()
+            elif choice == "3":
+                note_id = input("Введите ID заметки для редактирования: ")
+                edit_note(note_id)
+            elif choice == "4":
+                note_id = input("Введите ID заметки для редактирования: ")
+                delete_note(note_id)
+            elif choice == "5":
+                break
+            else:
+                print("Неверный выбор. Пожалуйста, попробуйте еще раз...")
 
-    def set_id(note):
-        note.id = str(uuid.uuid1())[0:3]
-
-    def set_title(note, title):
-        note.title = title
-
-    def set_body(note, body):
-        note.body = body
-
-    def set_date(note):
-        note.date = str(datetime.now().strftime("%d.%m.%Y %H:%M:%S"))
-
-    def to_string(note):
-        return note.id + ';' + note.title + ';' + note.body + ';' + note.date
-
-    def map_note(note):
-        return '\nID: ' + note.id + '\n' + 'Название: ' + note.title + '\n' + 'Описание: ' + note.body + '\n' + 'Дата публикации: ' + note.date
+    if __name__ == "__main__":
+        main()
